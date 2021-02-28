@@ -4,14 +4,29 @@ import App from '../App';
 import { Dropdown  } from 'react-bootstrap';
 import { Route } from 'react-router-dom';
 class relay extends Component {
-    render() { 
+    state = {
+        relayNum: 0,
+        isVisible: false,
+    }
+
+    render() {
+        let tmpr = [];
+        for (let i=1; i<=33; i++) {
+            tmpr.push(<Dropdown.Item key={i} eventKey={i} onSelect={() => this.setState({relayNum: i})}>{i}</Dropdown.Item>)
+        }
+        let ssf = [];
+        for (let i=1; i<=this.state.relayNum ; i++) {
+            ssf.push(<React.Fragment><Form.Control/><br/></React.Fragment>)
+        }
+
+
         return <>
             <div style={{textAlign:"center", display: "inline-block"}}>
                 <div className="content">
                     <Route path="/menu" component={App}/>
                     <Button href="/menu">Back to Home</Button>
                 </div>
-        <div className="relay">    
+        <div className="relay">
         <Form>
           <Form.Group controlId="relayId">
             <Form.Label>relayId</Form.Label>
@@ -22,52 +37,31 @@ class relay extends Component {
             <Form.Control placeholder="relayName"/>
           </Form.Group>
           <Dropdown>
-  <Dropdown.Toggle variant="success" id="dropdown-basic">
+  <Dropdown.Toggle variant="success" id="dropdown-basic" onSelect={(val) => console.log(val)}>
     RelayNumber
   </Dropdown.Toggle>
-  <Dropdown.Menu>
-    <Dropdown.Item >1</Dropdown.Item>
-    <Dropdown.Item >2</Dropdown.Item>
-    <Dropdown.Item >4</Dropdown.Item>
-    <Dropdown.Item >5</Dropdown.Item>
-    <Dropdown.Item >6</Dropdown.Item>
-    <Dropdown.Item >7</Dropdown.Item>
-    <Dropdown.Item >8</Dropdown.Item>
-    <Dropdown.Item >9</Dropdown.Item>
-    <Dropdown.Item >10</Dropdown.Item>
-    <Dropdown.Item >11</Dropdown.Item>
-    <Dropdown.Item >12</Dropdown.Item>
-    <Dropdown.Item >13</Dropdown.Item>
-    <Dropdown.Item >14</Dropdown.Item>
-    <Dropdown.Item >15</Dropdown.Item>
-    <Dropdown.Item >16</Dropdown.Item>
-    <Dropdown.Item >17</Dropdown.Item>
-    <Dropdown.Item >18</Dropdown.Item>
-    <Dropdown.Item >19</Dropdown.Item>
-    <Dropdown.Item >20</Dropdown.Item>
-    <Dropdown.Item >21</Dropdown.Item>
-    <Dropdown.Item >22</Dropdown.Item>
-    <Dropdown.Item >23</Dropdown.Item>
-    <Dropdown.Item >24</Dropdown.Item>
-    <Dropdown.Item >25</Dropdown.Item>
-    <Dropdown.Item >26</Dropdown.Item>
-    <Dropdown.Item >27</Dropdown.Item>
-    <Dropdown.Item >28</Dropdown.Item>
-    <Dropdown.Item >29</Dropdown.Item>
-    <Dropdown.Item >30</Dropdown.Item>
-    <Dropdown.Item >31</Dropdown.Item>
-    <Dropdown.Item >32</Dropdown.Item>
+              <br/><br/>
+  <Dropdown.Menu onSelect={(val) => console.log(val)}>
+      {tmpr}
     <Dropdown.Item ></Dropdown.Item>
   </Dropdown.Menu>
 </Dropdown>
+
+            {ssf}
+
+            <br/>
+
           <Button variant="primary" type="submit">
             Submit
           </Button>
+
+            <br/>
+            <br/>
         </Form>
         </div>
-        </div> 
+        </div>
         </>;
     }
 }
- 
+
 export default relay;

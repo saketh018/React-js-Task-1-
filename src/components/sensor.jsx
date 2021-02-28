@@ -23,6 +23,7 @@ class sensor extends Component {
           <Button variant="primary" type="submit">
             Submit
           </Button>
+          <div style={{marginBottom:"20px"}}/>
         </Form>
         </div>
         </div> 
